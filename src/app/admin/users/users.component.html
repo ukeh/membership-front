@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center" style="margin-top: 100px;">
+            <button type="button" class="btn btn-primary " style="float:right;" (click)="sendDueReminder()">Send Due Reminder</button>
+            <br>
+            <br>
+            <br>
+            <h3>MEMBER LIST</h3>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>S.No</th>
+                            <th>
+                                <button type="button" class="btn btn-primary" (click)='toggleCheck()'>{{isCheckedAll ?
+                                    "Uncheck All" : "Check All"}}</button>
+                            </th>
+                            <th>User ID</th>
+                            <th>Fullname</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Registration Date</th>
+                            <th>Account Status</th>
+                            <th>Login Status</th>
+                            <th>Payment</th>
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody *ngIf='users && users.length'>
+                        <tr *ngFor="let report of users; index as i;">
+
+                            <td>{{i+1}}</td>
+                            <td><input type="checkbox" [(ngModel)]='report.isChecked'></td>
+                            <td>{{report._id}}</td>
+                            <td>{{report.fullname}}</td>
+                            <td>{{report.email}}</td>
+                            <td>{{report.mobile}}</td>
+                            <td>{{report.createdAt | date : 'yyyy-MM-dd'}}</td>
+                            <td>
+                                <select name="status" id="status" [(value)]="report.status"
+                                    (change)="updateStatus($event.target,report._id)">
+                                    <option value="Active">Active</option>
+                                    <option value="Deceased">Deceased</option>
+                                    <option value="Lapsed">Lapsed</option>
+                                    <option value="Resigned">Resigned</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="loginStatus" id="loginStatus" [value]="report.isBlocked"
+                                    (change)="updateLoginStatus($event.target,report._id)">
+                                    <option value="false">Active</option>
+                                    <option value="true">Blocked</option>
+
+                                </select>
+                            </td>
+                            <td> <button type="button" class="btn btn-primary" [routerLink]="'/admin/payment'"
+                                    [queryParams]="{'id':report._id}">View</button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

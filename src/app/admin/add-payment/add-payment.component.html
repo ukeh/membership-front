@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row" style="margin: 0 auto;">
+        <div class="col-sm-12 " style="margin-top: 100px;">
+            <h2 class="text-center">ADD PAYMENT RECORD</h2>
+            <br>
+            <form [formGroup]="paymentForm" (ngSubmit)="addPayment()">
+                <div class="form-group">
+                    <label for="inputfrom">From</label>
+                    <input type="date" id="inputfrom" class="form-control" formControlName="from" required autofocus
+                        [ngClass]="{'is-invalid':submitted && f['from'].errors}">
+                    <div *ngIf="submitted && f['from'].errors" class="invalid-feedback">
+                        <div *ngIf="f['from'].errors['required']">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputto">to</label>
+                    <input type="date" id="inputto" class="form-control" formControlName="to" required autofocus
+                        [ngClass]="{'is-invalid':submitted && f['to'].errors}">
+                    <div *ngIf="submitted && f['to'].errors" class="invalid-feedback">
+                        <div *ngIf="f['to'].errors['required']">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputamount">Amount</label>
+                    <input type="number" id="inputamount" class="form-control" formControlName="amount" required
+                        autofocus [ngClass]="{'is-invalid':submitted && f['amount'].errors}">
+                    <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
+                        <div *ngIf="f['amount'].errors['required']">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputdate">Payment Date</label>
+                    <input type="date" id="inputdate" class="form-control" formControlName="paymentDate" required
+                        autofocus [ngClass]="{'is-invalid':submitted && f['paymentDate'].errors}">
+                    <div *ngIf="submitted && f['paymentDate'].errors" class="invalid-feedback">
+                        <div *ngIf="f['paymentDate'].errors['required']">
+                            This field is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary btn-sm"> Submit </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
